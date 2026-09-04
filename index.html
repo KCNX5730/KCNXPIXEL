@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>https://razorpay/xx36/12182620336/userid%20userlan%20/account/payment/payment_reciept.in</title>
+    <style>
+        /* ── Reset ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* ── Receipt Card ── */
+        .receipt {
+            max-width: 420px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.03);
+            padding: 34px 28px 30px;
+            transition: transform 0.15s ease;
+        }
+
+        /* ── Header: "Paid from" + bank badge ── */
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .paid-from-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            letter-spacing: 0.3px;
+        }
+
+        .bank-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f3f5f9;
+            padding: 6px 14px 6px 10px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a2634;
+        }
+
+        .bank-badge svg {
+            flex-shrink: 0;
+        }
+
+        /* ── Recipient Name ── */
+        .recipient-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0b1a2b;
+            margin: 6px 0 2px;
+            letter-spacing: -0.3px;
+        }
+
+        /* ── Recipient ID (email) ── */
+        .recipient-id {
+            font-size: 15px;
+            color: #4b5563;
+            font-weight: 450;
+            margin-bottom: 18px;
+            word-break: break-all;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #e9ecf0;
+            margin: 16px 0 18px;
+        }
+
+        /* ── Amount Row ── */
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .amount-currency {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1f2a3a;
+        }
+
+        .amount-value {
+            font-size: 38px;
+            font-weight: 700;
+            color: #0b1a2b;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .amount-status {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f7b3a;
+            background: #e6f7ed;
+            padding: 4px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-left: 12px;
+        }
+
+        /* ── Details Grid ── */
+        .details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 14px;
+            padding: 2px 0;
+        }
+
+        .detail-label {
+            color: #6b7280;
+            font-weight: 450;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            color: #1a2634;
+            font-weight: 500;
+            text-align: right;
+            word-break: break-all;
+            max-width: 68%;
+        }
+
+        .detail-value.highlight {
+            color: #0b1a2b;
+            font-weight: 600;
+        }
+
+        .detail-value .bank-name {
+            font-weight: 600;
+        }
+
+        /* ── Notes ── */
+        .notes-section {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid #e9ecf0;
+        }
+
+        .notes-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #8b95a5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .notes-text {
+            font-size: 15px;
+            color: #1a2634;
+            font-weight: 450;
+            font-style: italic;
+            background: #f7f9fc;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border-left: 3px solid #d0d7e3;
+        }
+
+        /* ── Footer ── */
+        .receipt-footer {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 12px;
+            color: #9aa3b3;
+            letter-spacing: 0.2px;
+            border-top: 1px solid #edf0f5;
+            padding-top: 18px;
+        }
+
+        .receipt-footer span {
+            display: inline-block;
+            background: #f5f7fb;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-weight: 450;
+        }
+
+        /* ── SVG icon helpers ── */
+        .icon-inline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 460px) {
+            .receipt {
+                padding: 26px 18px 24px;
+            }
+            .recipient-name {
+                font-size: 22px;
+            }
+            .amount-value {
+                font-size: 32px;
+            }
+            .detail-value {
+                max-width: 60%;
+                font-size: 13px;
+            }
+            .bank-badge {
+                font-size: 12px;
+                padding: 4px 12px 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt">
+
+        <!-- HEADER: Paid from + bank badge -->
+        <div class="receipt-header">
+            <span class="paid-from-label">Paid from</span>
+            <div class="bank-badge">
+                <!-- SVG: simple bank / building icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 10H21M5 10V17M9 10V17M13 10V17M17 10V17M4 21H20M6 21V19M18 21V19M12 3L2 8H22L12 3Z" stroke="#1a2634" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>SBI</span>
+            </div>
+        </div>
+
+        <!-- RECIPIENT NAME -->
+        <div class="recipient-name">Mrs Geetima Borpatragohain</div>
+
+        <!-- RECIPIENT ID (changed to bhargav5730@rxpaz) -->
+        <div class="recipient-id">bhargav5730@rxpaz</div>
+
+        <hr class="divider" />
+
+        <!-- AMOUNT -->
+        <div class="amount-row">
+            <span class="amount-currency">₹</span>
+            <span class="amount-value">50.00</span>
+            <span class="amount-status">Sent</span>
+        </div>
+
+        <!-- DETAILS -->
+        <div class="details-grid">
+
+            <div class="detail-row">
+                <span class="detail-label">Sender</span>
+                <span class="detail-value highlight">geetima.6198@waaxis</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Sent from</span>
+                <span class="detail-value">
+                    <span class="bank-name">RazorPay Account XX36</span>
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Transaction ID</span>
+                <span class="detail-value" style="font-family: 'SF Mono', 'Menlo', monospace; letter-spacing: 0.2px;">881937246282</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Date &amp; time</span>
+                <span class="detail-value">04 Sept 2026, 08:09 PM</span>
+            </div>
+
+        </div>
+
+        <!-- NOTES -->
+        <div class="notes-section">
+            <div class="notes-label">Notes</div>
+            <div class="notes-text">homiee here my contribution hahha</div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="receipt-footer">
+            <span>Payment via Bank Transfer &bull; Ref: 881937245103</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
